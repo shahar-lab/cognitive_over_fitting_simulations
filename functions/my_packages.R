@@ -1,3 +1,4 @@
+library(rstan) 
 library(cmdstanr)
 library(posterior)
 library(loo)
@@ -10,6 +11,10 @@ library(lme4)
 library(effects)
 library(gridExtra)
 library(svDialogs)
-
-
+library(future)
+library(RLR)
 library(ramify)
+library(bayestestR)
+library(brms)
+library(future)
+library(corrplot)

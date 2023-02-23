@@ -1,5 +1,6 @@
 misc/
 .RData
+data
 !functions/working_model.rdata
 # History files
 .Rhistory

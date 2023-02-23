@@ -6,6 +6,7 @@ source('./functions/my_starter.R')
 
 #--------------------------------------------------------------------------------------------------------
 
+myrewardfunc=set_rewardfunc()
 #load parameters
 load(paste0(path$data,'/model_parameters.Rdata'))
 
@@ -13,11 +14,14 @@ load(paste0(path$data,'/model_parameters.Rdata'))
 Nsubjects =dim(model_parameters$artificial_individual_parameters)[1] 
 
 #set task variables 
-cfg = list(Nblocks         =2,
+cfg = list(Nblocks         =4,
            Ntrials_perblock=50,
-           Narms           =2,  #number of arms in the task 
-           Nraffle         =2,  #number of arms offered for selection each trial
-           rndwlk          =read.csv('./functions/rndwlk.csv',header=F))
+           Narms           =4,  #number of arms in the task 
+           Noptions        =2,  #number of arms offered for selection each trial
+           rndwlk          =if(myrewardfunc=='randomwalk'){read.csv('./functions/rndwlk.csv',header=F)}
+                            else{
+                            t(data.frame(a=rep(0.46,1000),b=rep(0.48,1000),c=rep(0.5,1000),d=rep(0.52,1000))) 
+                            })
 
 #run simulation
 source(paste0(path$model,'.r'))

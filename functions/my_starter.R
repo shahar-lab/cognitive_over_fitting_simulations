@@ -8,6 +8,10 @@ source('./functions/run_fit.r')
 source('./functions/generate_individual_parameters.r')
 source('./functions/plot_artificial_parameters.r')
 source('./functions/set_datatype.r')
+source('./functions/set_modeltype.r')
+source('./functions/set_rewardfunc.r')
+source('./functions/make_mystandata.r')
+
 
 path=set_workingmodel()
 

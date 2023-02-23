@@ -7,10 +7,6 @@ mydatatype=set_datatype()
 
 
 #--------------------------------------------------------------------------------------------------------
-library(ggplot2)
-library(bayestestR)
-library(stringr)
-
 
 #load recovered parameters
 fit=readRDS(paste0(path$data,'/modelfit_recovery.rds'))
@@ -30,17 +26,50 @@ my_posteriorplot(x       = plogis(fit$draws(variables ='population_locations[1]'
                      mycolor = "pink")
 
 
-my_posteriorplot(x       = fit$draws(variables ='population_locations[2]',
-                                        format='draws_matrix'),
-                     myxlim  = c(0.5,5),
+
+my_posteriorplot(x       = plogis(fit$draws(variables ='population_locations[2]',
+                                        format='draws_matrix')),
+                     myxlim  = c(0,1),
                      my_vline= model_parameters$artificial_population_location[2], 
-                     myxlab  = expression(beta['location']),
+                     myxlab  = expression(omega['location']),
                      mycolor = "pink")
+
+my_posteriorplot(x       = plogis(fit$draws(variables ='population_locations[3]',
+                                            format='draws_matrix')),
+                 myxlim  = c(0,1),
+                 my_vline= model_parameters$artificial_population_location[3], 
+                 myxlab  = expression(omega['location']),
+                 mycolor = "pink")
+
+my_posteriorplot(x       = fit$draws(variables ='population_locations[4]',
+                                     format='draws_matrix'),
+                 myxlim  = c(0,10),
+                 my_vline= model_parameters$artificial_population_location[4], 
+                 myxlab  = expression(omega['location']),
+                 mycolor = "pink")
+
+my_posteriorplot(x       = fit$draws(variables ='population_locations[5]',
+                                     format='draws_matrix'),
+                 myxlim  = c(0,10),
+                 my_vline= model_parameters$artificial_population_location[5], 
+                 myxlab  = expression(omega['location']),
+                 mycolor = "pink")
+
+my_posteriorplot(x       = fit$draws(variables ='population_locations[6]',
+                                     format='draws_matrix'),
+                 myxlim  = c(0,10),
+                 my_vline= model_parameters$artificial_population_location[6], 
+                 myxlab  = expression(omega['location']),
+                 mycolor = "pink")
 
 #--------------------------------------------------------------------------------------------------------
 
 # individual level parameters
 
-my_xyplot(model_parameters$artificial_individual_parameters[,'alpha'],apply(fit$draws(variables ='alpha',format='draws_matrix'), 2, mean),'true','recovered','navy')
-my_xyplot(model_parameters$artificial_individual_parameters[,'beta'], apply(fit$draws(variables ='beta' ,format='draws_matrix'), 2, mean),'true','recovered','navy')
+my_xyplot(model_parameters$artificial_individual_parameters[,'alpha_color'],apply(fit$draws(variables ='alpha_color',format='draws_matrix'), 2, mean),'true','recovered','navy')
+my_xyplot(model_parameters$artificial_individual_parameters[,'alpha_key'], apply(fit$draws(variables ='alpha_key' ,format='draws_matrix'), 2, mean),'true','recovered','navy')
+my_xyplot(model_parameters$artificial_individual_parameters[,'alpha_shape'], apply(fit$draws(variables ='alpha_shape' ,format='draws_matrix'), 2, mean),'true','recovered','navy')
+my_xyplot(model_parameters$artificial_individual_parameters[,'beta_color'], apply(fit$draws(variables ='beta_color' ,format='draws_matrix'), 2, mean),'true','recovered','navy')
+my_xyplot(model_parameters$artificial_individual_parameters[,'beta_key'], apply(fit$draws(variables ='beta_key' ,format='draws_matrix'), 2, mean),'true','recovered','navy')
+my_xyplot(model_parameters$artificial_individual_parameters[,'beta_shape'], apply(fit$draws(variables ='beta_shape' ,format='draws_matrix'), 2, mean),'true','recovered','navy')
 
